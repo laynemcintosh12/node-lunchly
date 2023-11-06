@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Search Results for "{{ searchTerm }}"{% endblock %}
+{% block content %}
+
+<div class="container">
+  <h1>Search For Users!</h1>
+
+  <!-- Search Form -->
+  <form action="/search" method="get" class="mb-4">
+    <div class="input-group">
+      <input type="text" name="searchTerm" class="form-control" placeholder="Search by name">
+      <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+  </form>
+
+  <!-- Search Results -->
+  <ul class="list-group">
+    {% for customer in searchResults %}
+      <li class="list-group-item">
+        <a href="/{{ customer.id }}/">{{ customer.fullName() }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% endblock %}
